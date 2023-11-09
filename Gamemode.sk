@@ -1,0 +1,59 @@
+# Made by TheWeirdCoder and (mostly) EyeSaber 
+
+options:
+    server: &7[&bServerName&7]
+    perm: custom.use
+
+on join:
+    set join message to "&7[&a+&7] &a%player% Has joined!"
+    if {player::*} does not contain name of player:
+        add player to {player::*}
+
+on quit:
+    set quit message to "&7[&c-&7] &c%player% Has left!"
+    if {player::*} contains name of player:
+        remove player from {player::*}
+
+command gmc [<player>]:
+    permission: {@perm}
+    permission message: &#FF0000You do not have permission to use this command
+    trigger:
+        if arg-1 is not set:
+            make console execute "gamemode creative %sender%"
+            send "{@server} &6You've been put in Creative"
+        if {player::*} contains arg-1:
+            make console execute "gamemode creative %arg-1%"
+            send "{@server} &6You've put %arg-1% in Creative!"
+
+command gms [<player>]:
+    permission: {@perm}
+    permission message: &#FF0000You do not have permission to use this command
+    trigger:
+        if arg-1 is not set:
+            make console execute "gamemode survival %sender%"
+            send "{@server} &6You've been put in Survival"
+        if {player::*} contains arg-1:
+            make console execute "gamemode survival %arg-1%"
+            send "{@server} &6You've put %arg-1% in Survival"
+
+command gma [<player>]:
+    permission: {@perm}
+    permission message: &#FF0000You do not have permission to use this command
+    trigger:
+        if arg-1 is not set:
+            make console execute "gamemode adventure %sender%"
+            send "{@server} &6You've been put in Adventure"
+        if {player::*} contains arg-1:
+            make console execute "gamemode adventure %arg-1%"
+            send "{@server} &6You've put %arg-1% in Adventure"
+
+command gmsp [<player>]:
+    permission: {@perm}
+    permission message: &#FF0000You do not have permission to use this command
+    trigger:
+        if arg-1 is not set:
+            make console execute "gamemode spectator %sender%"
+            send "{@server} &6You've been put in Spectator"
+        if {player::*} contains arg-1:
+            make console execute "gamemode spectator %arg-1%"
+            send "{@server} &6You've put %arg-1% in Spectator"
